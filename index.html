@@ -28,14 +28,14 @@
 </head>
 <body>
     <div class="login-form" >
-        <form>
+        <form id="loginForm">
             <h2 class="text-center">Log In</h2>
             <br>
             <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email" required="required">
+                <input type="email" id="email" class="form-control" placeholder="Email" required="required">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" required="required">
+                <input type="password" id="password" class="form-control" placeholder="Password" required="required">
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn-block">Log In</button>
@@ -49,5 +49,28 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Sample account credentials (replace with your actual credentials)
+            const sampleEmail = 'sample@example.com';
+            const samplePassword = 'password';
+            
+            // Retrieve entered email and password
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Check if entered credentials match the sample account
+            if (email === sampleEmail && password === samplePassword) {
+                // Redirect to main.html
+                window.location.href = 'main.html';
+            } else {
+                // Show error message for invalid login
+                alert('Invalid email or password');
+            }
+        });
+    </script>
 </body>
 </html>

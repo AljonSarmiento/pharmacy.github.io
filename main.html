@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANG-ANGCO PHARMACY</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+        margin-bottom: 60px; 
+        }
+
+        #footer {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .product {
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 10px;
+            display: inline-block;
+            width: calc(33.33% - 20px); 
+            margin-right: 20px;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+        .product img {
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+        .cart {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 150px;
+        }
+    </style>
+</head>
+<body>
+
+<header class="bg-success text-white py-4">
+    <div class="container text-center">
+        <h1>ANG-ANGCO PHARMACY</h1>
+    </div>
+</header>
+
+<div class="container mt-4">
+    <div class="input-group mb-3">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search products...">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" onclick="searchProducts()">Search</button>
+        </div>
+    </div>
+    
+    <div id="products">
+        <!-- Products will be dynamically added here -->
+    </div>
+
+    <div id="cart" class="mt-4">
+        <h2>Cart</h2>
+        <div class="cart">
+            <ul id="cartItems"></ul>
+        </div>
+    </div>
+</div>
+
+<footer class="bg-dark text-white py-3 fixed-bottom">
+    <div class="container text-center">
+        <p>&copy; 2024 Online Store. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // Sample product data
+    const products = [
+        { id: 1, name: 'Product 1', price: 10, image: 'product1.jpg' },
+        { id: 2, name: 'Product 2', price: 20, image: 'product2.jpg' },
+        { id: 3, name: 'Product 3', price: 30, image: 'product3.jpg' },
+        { id: 4, name: 'Product 4', price: 10, image: 'product4.jpg' },
+        { id: 5, name: 'Product 5', price: 20, image: 'product5.jpg' },
+        { id: 6, name: 'Product 6', price: 30, image: 'product6.jpg' },
+    ];
+
+    // Function to display products
+    function displayProducts() {
+        const productsContainer = document.getElementById('products');
+        productsContainer.innerHTML = '';
+        products.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.classList.add('product', 'p-3');
+            productDiv.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>PHP${product.price}</p>
+                <button class="btn btn-primary" onclick="addToCart(${product.id})">Add to Cart</button>
+            `;
+            productsContainer.appendChild(productDiv);
+        });
+    }
+
+    // Function to search products
+    function searchProducts() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchInput));
+        const productsContainer = document.getElementById('products');
+        productsContainer.innerHTML = '';
+        filteredProducts.forEach(product => {
+            const productDiv = document.createElement('div');
+            productDiv.classList.add('product', 'p-3');
+            productDiv.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>PHP${product.price}</p>
+                <button class="btn btn-primary" onclick="addToCart(${product.id})">Add to Cart</button>
+            `;
+            productsContainer.appendChild(productDiv);
+        });
+    }
+
+    // Function to add product to cart
+    function addToCart(productId) {
+        const product = products.find(item => item.id === productId);
+        if (product) {
+            const cartItems = document.getElementById('cartItems');
+            const li = document.createElement('li');
+            li.textContent = `${product.name} - PHP${product.price}`;
+            cartItems.appendChild(li);
+            // Show alert for successful addition to cart
+            alert('Successfully added to cart');
+        } else {
+            alert('Product not found!');
+        }
+    }
+
+    // Initial display of products
+    displayProducts();
+</script>
+
+</body>
+</html>
