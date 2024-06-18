@@ -390,50 +390,7 @@
       <p>&copy; 2024 Pharmacy. All rights reserved.</p>
     </div>
     
-    <script>
-      const cartItems = [];
-  
-      function addToCart(productName, productPrice, productImage) {
-        const item = {
-          name: productName,
-          price: productPrice,
-          image: productImage
-        };
-        cartItems.push(item);
-        showNotification(productName + ' has been added to your cart.');
-        updateCartUI();
-      }
-  
-      function updateCartUI() {
-        const cartItemsContainer = document.getElementById('cart-items');
-        cartItemsContainer.innerHTML = '';
-        cartItems.forEach(item => {
-          const li = document.createElement('li');
-          li.innerHTML = `<img src="${item.image}" alt="${item.name}" width="50" height="50"> ${item.name} - Php ${item.price}`;
-          cartItemsContainer.appendChild(li);
-        });
-      }
-
-      function showNotification(message, autoDismiss = true) {
-        const notification = document.getElementById('notification');
-        notification.innerHTML = message;
-        notification.style.display = 'block';
-      
-        if (autoDismiss) {
-          setTimeout(() => {
-            hideNotification();
-          }, 3000); // Hide after 3 seconds
-        }
-      }
-      
-      function hideNotification() {
-        const notification = document.getElementById('notification');
-        notification.style.display = 'none';
-      }
-
-
-
-    </script>
+    <script src="index.js"></script>
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGzFCLx6cUVkt6Qs2RISuV3Im9Cegw9p5YkMf+hOzvI6F" crossorigin="anonymous"></script>
